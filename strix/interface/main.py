@@ -233,6 +233,13 @@ async def warm_up_llm() -> None:
         sys.exit(1)
 
 
+def get_version() -> str:
+    try:
+        from importlib.metadata import version
+        return version("strix-agent")
+    except Exception:  # noqa: BLE001
+        return "unknown"
+
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Strix Multi-Agent Cybersecurity Penetration Testing Tool",
@@ -266,6 +273,13 @@ Examples:
   strix --target example.com --instruction ./instructions.txt
   strix --target https://app.com --instruction /path/to/detailed_instructions.md
         """,
+    )
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"strix {get_version()}",
     )
 
     parser.add_argument(
@@ -402,6 +416,9 @@ def display_completion_message(args: argparse.Namespace, results_path: Path) -> 
 
     console.print("\n")
     console.print(panel)
+    console.print()
+    console.print("[dim]🌐 Website:[/] [cyan]https://usestrix.com[/]")
+    console.print("[dim]💬 Discord:[/] [cyan]https://discord.gg/YjKFvEZSdZ[/]")
     console.print()
 
 
