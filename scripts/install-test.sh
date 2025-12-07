@@ -314,7 +314,11 @@ if [ "$SKIP_DOWNLOAD" = false ]; then
 fi
 setup_path
 verify_installation
-check_docker
+
+# Skip docker check in CI/test mode
+if [ -z "$LOCAL_BINARY_DIR" ]; then
+    check_docker
+fi
 
 echo ""
 echo -e "${CYAN}"

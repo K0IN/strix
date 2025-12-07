@@ -66,6 +66,8 @@ jobs:
         include:
           - os: macos-latest
             target: macos-arm64
+          - os: macos-latest
+            target: macos-x86_64
           - os: ubuntu-latest
             target: linux-x86_64
           - os: windows-latest
@@ -92,7 +94,7 @@ jobs:
         shell: bash
         run: |
           chmod +x scripts/install-test.sh
-          VERSION=${{ steps.version.outputs.version }} LOCAL_BINARY_DIR=${{ github.workspace }}/dist/release ./scripts/install-test.sh
+          VERSION=${{ steps.version.outputs.version }} LOCAL_BINARY_DIR="$(pwd)/dist/release" ./scripts/install-test.sh
 
       - name: Verify installation
         shell: bash
