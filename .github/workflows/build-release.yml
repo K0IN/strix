@@ -14,9 +14,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-14
+          - os: macos-latest
             target: macos-arm64
-          - os: macos-13
+          - os: macos-latest
             target: macos-x86_64
           - os: ubuntu-latest
             target: linux-x86_64
@@ -85,12 +85,6 @@ jobs:
         with:
           path: release
           merge-multiple: true
-
-      - name: Generate checksums
-        run: |
-          cd release
-          sha256sum * > checksums.txt
-          cat checksums.txt
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
