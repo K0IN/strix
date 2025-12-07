@@ -64,10 +64,13 @@ if [ "$OS_NAME" = "windows" ]; then
     BINARY_NAME="${BINARY_NAME}.exe"
     cp "dist/strix.exe" "$RELEASE_DIR/$BINARY_NAME"
     echo -e "\n${BLUE}Creating zip...${NC}"
-    cd "$RELEASE_DIR"
     ARCHIVE_NAME="${BINARY_NAME%.exe}.zip"
-    zip "$ARCHIVE_NAME" "$BINARY_NAME"
-    cd "$PROJECT_ROOT"
+    
+    if command -v 7z &> /dev/null; then
+        7z a "$RELEASE_DIR/$ARCHIVE_NAME" "$RELEASE_DIR/$BINARY_NAME"
+    else
+        powershell -Command "Compress-Archive -Path '$RELEASE_DIR/$BINARY_NAME' -DestinationPath '$RELEASE_DIR/$ARCHIVE_NAME'"
+    fi
     echo -e "${GREEN}Created:${NC} $RELEASE_DIR/$ARCHIVE_NAME"
 else
     if [ ! -f "dist/strix" ]; then
@@ -77,10 +80,8 @@ else
     cp "dist/strix" "$RELEASE_DIR/$BINARY_NAME"
     chmod +x "$RELEASE_DIR/$BINARY_NAME"
     echo -e "\n${BLUE}Creating tarball...${NC}"
-    cd "$RELEASE_DIR"
     ARCHIVE_NAME="${BINARY_NAME}.tar.gz"
-    tar -czvf "$ARCHIVE_NAME" "$BINARY_NAME"
-    cd "$PROJECT_ROOT"
+    tar -czvf "$RELEASE_DIR/$ARCHIVE_NAME" -C "$RELEASE_DIR" "$BINARY_NAME"
     echo -e "${GREEN}Created:${NC} $RELEASE_DIR/$ARCHIVE_NAME"
 fi
 
