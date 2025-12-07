@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - 'pyinstaller-build'
   workflow_dispatch:
 
 jobs:
