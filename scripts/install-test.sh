@@ -15,6 +15,7 @@ NC='\033[0m'
 
 requested_version=${VERSION:-}
 LOCAL_BINARY_DIR=${LOCAL_BINARY_DIR:-}
+TARGET_OVERRIDE=${TARGET:-}
 SKIP_DOWNLOAD=false
 
 raw_os=$(uname -s)
@@ -56,6 +57,11 @@ if [ "$os" = "windows" ]; then
 fi
 
 target="$os-$arch"
+
+# Allow override for CI testing different architectures
+if [ -n "$TARGET_OVERRIDE" ]; then
+    target="$TARGET_OVERRIDE"
+fi
 
 if [ "$os" = "linux" ]; then
     if ! command -v tar >/dev/null 2>&1; then

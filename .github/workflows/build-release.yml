@@ -94,7 +94,7 @@ jobs:
         shell: bash
         run: |
           chmod +x scripts/install-test.sh
-          VERSION=${{ steps.version.outputs.version }} LOCAL_BINARY_DIR="$(pwd)/dist/release" ./scripts/install-test.sh
+          VERSION=${{ steps.version.outputs.version }} TARGET=${{ matrix.target }} LOCAL_BINARY_DIR="$(pwd)/dist/release" ./scripts/install-test.sh
 
       - name: Verify installation
         shell: bash
