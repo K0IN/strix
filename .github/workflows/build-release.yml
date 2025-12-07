@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - 'pyinstaller-build'
   workflow_dispatch:
 
 jobs:
@@ -43,12 +45,10 @@ jobs:
 
           if [[ "${{ runner.os }}" == "Windows" ]]; then
             cp dist/strix.exe "dist/release/strix-${VERSION}-${{ matrix.target }}.exe"
-            # Use 7z relative path, avoid cd
-            7z a "dist/release/strix-${VERSION}-${{ matrix.target }}.zip" "./dist/release/strix-${VERSION}-${{ matrix.target }}.exe"
+            (cd dist/release && 7z a "strix-${VERSION}-${{ matrix.target }}.zip" "strix-${VERSION}-${{ matrix.target }}.exe")
           else
             cp dist/strix "dist/release/strix-${VERSION}-${{ matrix.target }}"
             chmod +x "dist/release/strix-${VERSION}-${{ matrix.target }}"
-            # Use tar with -C to change directory safely during archive creation
             tar -C dist/release -czvf "dist/release/strix-${VERSION}-${{ matrix.target }}.tar.gz" "strix-${VERSION}-${{ matrix.target }}"
           fi
 
