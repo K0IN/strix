@@ -55,7 +55,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: strix-${{ matrix.target }}
-          path: dist/release/*
+          path: |
+            dist/release/*.tar.gz
+            dist/release/*.zip
           if-no-files-found: error
 
   test-install:
