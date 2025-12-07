@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches:
-      - 'pyinstaller-build'
   workflow_dispatch:
 
 jobs:
@@ -39,10 +37,10 @@ jobs:
         run: |
           poetry install --with dev
           poetry run pyinstaller strix.spec --noconfirm
-          
+
           VERSION=$(poetry version -s)
           mkdir -p dist/release
-          
+
           if [[ "${{ runner.os }}" == "Windows" ]]; then
             cp dist/strix.exe "dist/release/strix-${VERSION}-${{ matrix.target }}.exe"
             # Use 7z relative path, avoid cd
@@ -53,7 +51,7 @@ jobs:
             # Use tar with -C to change directory safely during archive creation
             tar -C dist/release -czvf "dist/release/strix-${VERSION}-${{ matrix.target }}.tar.gz" "strix-${VERSION}-${{ matrix.target }}"
           fi
-          
+
           # Test
           echo "Testing binary..."
           if [[ "${{ runner.os }}" == "Windows" ]]; then

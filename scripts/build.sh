@@ -65,7 +65,7 @@ if [ "$OS_NAME" = "windows" ]; then
     cp "dist/strix.exe" "$RELEASE_DIR/$BINARY_NAME"
     echo -e "\n${BLUE}Creating zip...${NC}"
     ARCHIVE_NAME="${BINARY_NAME%.exe}.zip"
-    
+
     if command -v 7z &> /dev/null; then
         7z a "$RELEASE_DIR/$ARCHIVE_NAME" "$RELEASE_DIR/$BINARY_NAME"
     else

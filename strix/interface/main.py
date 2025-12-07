@@ -236,9 +236,11 @@ async def warm_up_llm() -> None:
 def get_version() -> str:
     try:
         from importlib.metadata import version
+
         return version("strix-agent")
     except Exception:  # noqa: BLE001
         return "unknown"
+
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(

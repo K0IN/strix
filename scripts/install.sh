@@ -102,7 +102,7 @@ check_version() {
     if command -v strix >/dev/null 2>&1; then
         strix_path=$(which strix)
         installed_version=$(strix --version 2>/dev/null | awk '{print $2}' || echo "")
-        
+
         if [[ -z "$installed_version" ]]; then
             print_message info "${MUTED}Found older strix at ${NC}$strix_path ${MUTED}(no version info)${NC}"
             print_message info "${MUTED}Upgrading to ${NC}$specific_version"

@@ -38,7 +38,7 @@ hiddenimports = [
     'litellm.llms.bedrock',
     'litellm.utils',
     'litellm.caching',
-    
+
     # Textual TUI
     'textual',
     'textual.app',
@@ -49,7 +49,7 @@ hiddenimports = [
     'textual.reactive',
     'textual.css',
     'textual._text_area_theme',
-    
+
     # Rich console
     'rich',
     'rich.console',
@@ -59,42 +59,42 @@ hiddenimports = [
     'rich.style',
     'rich.align',
     'rich.live',
-    
+
     # Pydantic
     'pydantic',
     'pydantic.fields',
     'pydantic_core',
     'email_validator',
-    
+
     # Docker
     'docker',
     'docker.api',
     'docker.models',
     'docker.errors',
-    
+
     # HTTP/Networking
     'httpx',
     'httpcore',
     'requests',
     'urllib3',
     'certifi',
-    
+
     # Jinja2 templating
     'jinja2',
     'jinja2.ext',
     'markupsafe',
-    
+
     # XML parsing
     'xmltodict',
-    
+
     # Tiktoken (for token counting)
     'tiktoken',
     'tiktoken_ext',
     'tiktoken_ext.openai_public',
-    
+
     # Tenacity retry
     'tenacity',
-    
+
     # Strix modules
     'strix',
     'strix.interface',
@@ -145,7 +145,7 @@ excludes = [
     'fastapi',
     'uvicorn',
     'numpydoc',
-    
+
     # Google Cloud / Vertex AI
     'google.cloud',
     'google.cloud.aiplatform',
@@ -156,13 +156,13 @@ excludes = [
     'grpc',
     'grpcio',
     'grpcio_status',
-    
+
     # Test frameworks
     'pytest',
     'pytest_asyncio',
     'pytest_cov',
     'pytest_mock',
-    
+
     # Development tools
     'mypy',
     'ruff',
@@ -172,7 +172,7 @@ excludes = [
     'pyright',
     'bandit',
     'pre_commit',
-    
+
     # Unnecessary for runtime
     'tkinter',
     'matplotlib',
